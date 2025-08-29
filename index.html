@@ -14,22 +14,24 @@
   <style>
     :root {
       --accent: #66e0ff;
+      --accent2: #ff66cc;
+      --accent3: #ffd966;
       --light-bg: rgba(255, 255, 255, 0.2);
       --dark-bg: rgba(0, 0, 0, 0.3);
       --blur: blur(12px);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #4a148c);
       background-size: 600% 600%;
+      animation: gradient 12s ease infinite;
       color: white;
-      animation: gradient 15s ease infinite;
       transition: background 0.5s, color 0.5s;
     }
+
     body.light {
-      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      background: linear-gradient(135deg, #f0f9ff, #cbebff, #e0f7fa, #d6eaff);
       color: #111;
     }
 
@@ -97,6 +99,13 @@
       background: var(--accent);
       color: black;
     }
+    .sidebar a:hover i {
+      animation: bounce 0.6s;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
 
     .progress-container {
       position: fixed;
@@ -125,21 +134,17 @@
 
     h2 { margin-bottom: 20px; }
 
-    .cert-grid, .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
     .card {
       padding: 20px;
       background: inherit;
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 15px;
-      text-align: center;
       transition: 0.3s;
     }
-    .card:hover { transform: scale(1.05); }
+    .card:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 0 20px var(--accent2), 0 0 30px var(--accent);
+    }
 
     .badge {
       background: var(--accent);
@@ -150,19 +155,34 @@
       margin-left: 6px;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 6px 10px;
-      background: rgba(255,255,255,0.2);
+    /* Skills Progress Bars */
+    .skill-bar {
+      background: rgba(255,255,255,0.15);
       border-radius: 10px;
-      margin: 4px 6px 0 0;
-      font-size: 0.85rem;
-      transition: 0.3s;
+      overflow: hidden;
+      margin: 6px 0 18px 0;
+      height: 14px;
     }
-    .tag:hover {
-      background: var(--accent);
-      color: #000;
-      transform: scale(1.05);
+    .skill-fill {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+      width: 0;
+      transition: width 1.8s ease;
+    }
+
+    /* Contact Form Glow */
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: none;
+      transition: box-shadow 0.3s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px var(--accent2), 0 0 20px var(--accent);
     }
 
     @media (max-width: 768px) {
@@ -190,7 +210,6 @@
   <a href="#skills"><i class="fas fa-code"></i></a>
   <a href="#experience"><i class="fas fa-briefcase"></i></a>
   <a href="#education"><i class="fas fa-graduation-cap"></i></a>
-  <a href="#projects"><i class="fas fa-laptop-code"></i></a>
   <a href="#contact"><i class="fas fa-envelope"></i></a>
 </div>
 
@@ -229,24 +248,26 @@
 <!-- Skills -->
 <section id="skills" data-aos="fade-left">
   <h2>Skills</h2>
-  <div class="skills-grid">
-    <div>
-      <h3>Programming Languages</h3>
-      <span class="tag">Java</span><span class="tag">Python</span><span class="tag">Q</span>
-      <span class="tag">JavaScript</span><span class="tag">Scala</span><span class="tag">Bash</span><span class="tag">C#</span>
-    </div>
-    <div>
-      <h3>Databases</h3>
-      <span class="tag">PostgreSQL</span><span class="tag">ElasticSearch</span><span class="tag">Redis</span>
-      <span class="tag">SingleStore</span><span class="tag">KDB+</span><span class="tag">Hadoop</span><span class="tag">Cassandra</span>
-    </div>
-    <div>
-      <h3>Technologies & Tools</h3>
-      <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Kafka</span><span class="tag">Spring</span>
-      <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Spark</span><span class="tag">Zookeeper</span>
-    </div>
+  <div>
+    <h3>Programming Languages</h3>
+    <p>Java</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:90%"></div></div>
+    <p>Python</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:85%"></div></div>
+    <p>Scala</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:75%"></div></div>
+  </div>
+  <div>
+    <h3>Databases</h3>
+    <p>PostgreSQL</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:80%"></div></div>
+    <p>ElasticSearch</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:70%"></div></div>
+    <p>Cassandra</p>
+    <div class="skill-bar"><div class="skill-fill" style="--level:65%"></div></div>
   </div>
 </section>
+
 <!-- Experience -->
 <section id="experience" data-aos="fade-up">
   <h2>Experience</h2>
@@ -268,15 +289,6 @@
       <li>Led 4+ projects generating $10M+ revenue and mentored global developers.</li>
     </ul>
   </div>
-  <div class="card" style="margin-bottom: 20px;">
-    <h3>Associate Software Developer - Goldman Sachs</h3>
-    <p><em>New York, USA | August 2020 – December 2021</em></p>
-    <ul>
-      <li>Optimized Java-based trading apps to increase volume handling by 20x with sub-second latency.</li>
-      <li>Initiated automated regression testing reducing manual effort by ~80%.</li>
-    </ul>
-  </div>
-  <!-- You can add more experiences here similarly -->
 </section>
 
 <!-- Education -->
@@ -294,48 +306,18 @@
   </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" data-aos="fade-up">
-  <h2>Projects</h2>
-
-  <div style="margin-bottom: 15px;">
-    <button onclick="filterProjects('all')" class="filter-btn active">All</button>
-    <button onclick="filterProjects('java')" class="filter-btn">Java</button>
-    <button onclick="filterProjects('python')" class="filter-btn">Python</button>
-    <button onclick="filterProjects('cloud')" class="filter-btn">Cloud</button>
-  </div>
-
-  <div class="cert-grid" id="projects-grid">
-    <div class="card project-item" data-tags="java cloud">
-      <h3>Real-time Trading Platform</h3>
-      <p>Java-based, Kafka-powered distributed trading platform for low-latency electronic trading.</p>
-      <a href="#" target="_blank" style="color: var(--accent);">GitHub Repo</a>
-    </div>
-    <div class="card project-item" data-tags="python cloud">
-      <h3>Portfolio Management Cloud App</h3>
-      <p>Python containerized cloud app for managing compute-intensive portfolio models.</p>
-      <a href="#" target="_blank" style="color: var(--accent);">Live Demo</a>
-    </div>
-    <div class="card project-item" data-tags="java">
-      <h3>Order Management System</h3>
-      <p>Java-based OMS with real-time position calculation and risk analytics.</p>
-      <a href="#" target="_blank" style="color: var(--accent);">GitHub Repo</a>
-    </div>
-    <!-- Add more projects as needed -->
-  </div>
-</section>
 <!-- Contact Section -->
 <section id="contact" data-aos="fade-up">
   <h2>Contact Me</h2>
   <form id="contact-form" style="max-width: 500px; margin: auto;">
     <label for="name">Name</label><br/>
-    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-bottom: 12px; border-radius: 8px; border: none;"/>
+    <input type="text" id="name" name="name" required />
 
     <label for="email">Email</label><br/>
-    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 12px; border-radius: 8px; border: none;"/>
+    <input type="email" id="email" name="email" required />
 
     <label for="message">Message</label><br/>
-    <textarea id="message" name="message" required rows="5" style="width: 100%; padding: 8px; margin-bottom: 12px; border-radius: 8px; border: none;"></textarea>
+    <textarea id="message" name="message" required rows="5"></textarea>
 
     <button type="submit" style="background: var(--accent); color: black; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer;">Send</button>
   </form>
@@ -353,10 +335,7 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   // Initialize AOS
-  AOS.init({
-    duration: 900,
-    once: true
-  });
+  AOS.init({ duration: 900, once: true });
 
   // Scroll Progress Bar
   window.addEventListener('scroll', () => {
@@ -367,7 +346,7 @@
     scrollBar.style.width = scrollPercent + '%';
   });
 
-  // Theme toggle & persist
+  // Theme toggle with neon palette swap
   function toggleTheme() {
     const body = document.body;
     if(body.classList.contains('light')) {
@@ -380,37 +359,27 @@
       localStorage.setItem('theme', 'light');
     }
   }
-  // On page load, set theme from localStorage
   (function(){
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.body.classList.remove('dark','light');
     document.body.classList.add(savedTheme);
   })();
 
-  // Project Filtering
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projects = document.querySelectorAll('.project-item');
-
-  function filterProjects(tag) {
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
-    projects.forEach(project => {
-      const tags = project.getAttribute('data-tags').split(' ');
-      if(tag === 'all' || tags.includes(tag)) {
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
+  // Animate skill bars when in view
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.style.width = entry.target.getAttribute('style').match(/--level:(\d+%)/)[1];
       }
     });
-  }
+  }, { threshold: 0.5 });
 
-  // Contact form using EmailJS (requires emailjs-com library and account setup)
-  // For demo purposes, the form submission just shows success without sending email
+  skillFills.forEach(fill => observer.observe(fill));
+
+  // Contact form simulation
   document.getElementById('contact-form').addEventListener('submit', function(e){
     e.preventDefault();
-    // Here, integrate EmailJS or similar service as needed
-    // Show success message for now:
     const status = document.getElementById('form-status');
     status.style.color = 'var(--accent)';
     status.textContent = 'Thank you! Your message has been sent.';
