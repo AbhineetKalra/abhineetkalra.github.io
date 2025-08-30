@@ -317,6 +317,7 @@
             border-radius: 50%;
             border: 3px solid var(--text-primary);
             animation: pulse 2s ease-in-out infinite;
+	    z-index: 2;
         }
 
         @keyframes pulse {
@@ -346,12 +347,12 @@
         }
 
         .typing-text {
-    border-right: 2px solid var(--gold-accent);
-    white-space: nowrap;
-    margin: 0 auto;
-    display: inline-block;
-    animation: blink 1s infinite;
-}
+    		border-right: 2px solid var(--gold-accent);
+    		white-space: nowrap;
+    		margin: 0 auto;
+    		display: inline-block;
+    		animation: blink 1s infinite;
+	}
 
         @keyframes typing {
             0%, 90%, 100% { width: 0; }
@@ -398,6 +399,35 @@
         .contact-item:hover i {
             transform: scale(1.2);
             color: var(--primary-color);
+        }
+
+        .pdf-download {
+            background: linear-gradient(45deg, var(--gold-accent), #fbbf24);
+            color: var(--bg-primary) !important;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .pdf-download:hover::before {
+            left: 100%;
+        }
+
+        .pdf-download:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
         }
 
         /* Enhanced Section Headers */
@@ -744,6 +774,17 @@
             font-weight: 500;
         }
 
+        .location-pin {
+            color: var(--gold-accent);
+            margin-right: 0.3rem;
+            animation: pinBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes pinBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
         .job-points {
             list-style: none;
             padding-left: 0;
@@ -906,6 +947,171 @@
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
+        /* Contact Form Styles */
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message-group {
+            align-items: flex-start;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 1.2rem;
+            color: var(--text-muted);
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .message-group .input-icon {
+            top: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .contact-form input:focus + label,
+        .contact-form textarea:focus + label,
+        .contact-form input:valid + label,
+        .contact-form textarea:valid + label {
+            transform: translateY(-2.5rem) scale(0.85);
+            color: var(--primary-color);
+            background: var(--bg-primary);
+            padding: 0 0.5rem;
+        }
+
+        .contact-form input:focus ~ .input-icon,
+        .contact-form textarea:focus ~ .input-icon {
+            color: var(--primary-color);
+        }
+
+        .contact-form label {
+            position: absolute;
+            left: 3rem;
+            top: 1.2rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .message-group label {
+            top: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--gold-accent));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            min-height: 60px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-loading {
+            display: none;
+        }
+
+        .submit-btn.loading .btn-text,
+        .submit-btn.loading .btn-icon {
+            display: none;
+        }
+
+        .submit-btn.loading .btn-loading {
+            display: block;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .sidebar {
@@ -1018,6 +1224,27 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, var(--gold-accent), var(--primary-color));
         }
+
+        /* Print styles for PDF generation */
+        @media print {
+            body { background: white !important; color: black !important; }
+            .glass-container { 
+                background: white !important; 
+                box-shadow: none !important; 
+                border: 1px solid #ddd !important;
+                backdrop-filter: none !important;
+            }
+            .sidebar, .progress-bar, .particles, .scroll-indicator,
+            .loading-overlay, .pdf-download, #contact { display: none !important; }
+            .name { color: #2563eb !important; }
+            .section-header { color: #2563eb !important; }
+            .location-pin { color: #f59e0b !important; }
+            .contact-item { break-inside: avoid; }
+            .experience-item, .cert-card, .skill-category, .education-item { 
+                break-inside: avoid; 
+                page-break-inside: avoid; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -1062,13 +1289,17 @@
             <i class="fas fa-graduation-cap"></i>
             <div class="nav-tooltip">Education</div>
         </div>
+        <div class="nav-item" data-target="contact">
+            <i class="fas fa-envelope"></i>
+            <div class="nav-tooltip">Contact</div>
+        </div>
     </nav>
 
     <!-- Header Section -->
     <section id="header" class="glass-container header">
         <div class="profile-container">
             <div class="profile-image" id="profileImage">
-                <img src="data:image/jpeg;base64,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" alt="Abhineet Kalra" />
+                <img src="profile.jpeg" alt="Abhineet Kalra" />
             </div>
             <div class="status-indicator" title="Available for opportunities"></div>
         </div>
@@ -1095,6 +1326,10 @@
                 <i class="fab fa-linkedin"></i>
                 <span>LinkedIn</span>
             </a>
+            <div class="contact-item pdf-download" onclick="downloadPDF()">
+                <i class="fas fa-file-pdf"></i>
+                <span>Download Resume PDF</span>
+            </div>
         </div>
     </section>
 
@@ -1187,10 +1422,10 @@
             <div class="experience-list" id="experienceList">
                 <div class="experience-item" data-aos="fade-up" data-company="cpp">
                     <div class="company-header">
-                        <a href="https://www.cppinvestments.com/" target="_blank" class="company-name">CPP Investment Board</a>
+                        <a href="#" class="company-name">CPP Investment Board</a>
                         <div class="experience-duration">Jan 2024 - Present</div>
                     </div>
-                    <div class="job-title">Lead Engineer • Toronto, Canada</div>
+                    <div class="job-title">Lead Engineer • <i class="fas fa-map-pin location-pin"></i> Toronto, Canada</div>
                     <ul class="job-points">
                         <li>Helm the Total Fund Management team, orchestrating risk management and rebalancing a <strong>$350B+ portfolio</strong> through trailblazing cloud-native solutions.</li>
                         <li>Contribute to multiple containerized Python cloud applications, empowering portfolio management teams to execute and visualize compute-intensive models.</li>
@@ -1200,10 +1435,10 @@
 
                 <div class="experience-item" data-aos="fade-up" data-company="goldman">
                     <div class="company-header">
-                        <a href="https://www.goldmansachs.com/" target="_blank" class="company-name">Goldman Sachs</a>
+                        <a href="#" class="company-name">Goldman Sachs</a>
                         <div class="experience-duration">Jan 2022 - Nov 2023</div>
                     </div>
-                    <div class="job-title">Lead Software Engineer • New York, USA</div>
+                    <div class="job-title">Lead Software Engineer • <i class="fas fa-map-pin location-pin"></i> New York, USA</div>
                     <ul class="job-points">
                         <li>Chief architect of a real-time distributed electronic trading platform built in Java, adept at processing, enriching, and transforming live events.</li>
                         <li>Reengineered a monolithic system into a stateless, asynchronous masterpiece leveraging Kafka and Zookeeper, achieving unparalleled horizontal scalability.</li>
@@ -1215,10 +1450,10 @@
 
                 <div class="experience-item" data-aos="fade-up" data-company="goldman">
                     <div class="company-header">
-                        <a href="https://www.goldmansachs.com/" target="_blank" class="company-name">Goldman Sachs</a>
+                        <a href="#" class="company-name">Goldman Sachs</a>
                         <div class="experience-duration">Aug 2020 - Dec 2021</div>
                     </div>
-                    <div class="job-title">Associate Software Developer • New York, USA</div>
+                    <div class="job-title">Associate Software Developer • <i class="fas fa-map-pin location-pin"></i> New York, USA</div>
                     <ul class="job-points">
                         <li>Optimized Java-based trading applications, achieving a <strong>20x surge in volume handling</strong> (from ~40M to ~800M order events) while maintaining sub-second latency.</li>
                         <li>Initiated an automated regression testing environment, slashing manual testing efforts by <strong>~80%</strong>.</li>
@@ -1227,10 +1462,10 @@
 
                 <div class="experience-item" data-aos="fade-up" data-company="tradeweb">
                     <div class="company-header">
-                        <a href="https://www.tradeweb.com/" target="_blank" class="company-name">Tradeweb Markets LLC</a>
+                        <a href="#" class="company-name">Tradeweb Markets LLC</a>
                         <div class="experience-duration">Oct 2019 - Jul 2020</div>
                     </div>
-                    <div class="job-title">Senior Full Stack Software Developer • New York, USA</div>
+                    <div class="job-title">Senior Full Stack Software Developer • <i class="fas fa-map-pin location-pin"></i> New York, USA</div>
                     <ul class="job-points">
                         <li>Integral member of the real-time trading applications team, enhancing a retail-targeted trading platform.</li>
                         <li>Developed and maintained back-end low-latency microservices with Spring-boot, Kafka, Cassandra, and Zookeeper.</li>
@@ -1241,10 +1476,10 @@
 
                 <div class="experience-item" data-aos="fade-up" data-company="millennium">
                     <div class="company-header">
-                        <a href="https://www.mlp.com/" target="_blank" class="company-name">Millennium Management LLC</a>
+                        <a href="#" class="company-name">Millennium Management LLC</a>
                         <div class="experience-duration">Jul 2017 - Oct 2019</div>
                     </div>
-                    <div class="job-title">Software Engineer • New York, USA</div>
+                    <div class="job-title">Software Engineer • <i class="fas fa-map-pin location-pin"></i> New York, USA</div>
                     <ul class="job-points">
                         <li>Contributed to the equities post-trade analytics team, developing an application for real-time risk, positions, and P&L management for <strong>200+ portfolio teams</strong>.</li>
                         <li>Engineered a Java-based order management system for real-time position calculations.</li>
@@ -1270,7 +1505,7 @@
                     <i class="fas fa-user-graduate"></i>
                     Master of Science, Computer Science
                 </div>
-                <div class="university"><a href="https://www.nyu.edu/" target="_blank" style="color: inherit; text-decoration: none;">New York University - Graduate School of Arts and Science</a></div>
+                <div class="university">New York University - Graduate School of Arts and Science</div>
                 <div class="duration">September 2015 – May 2017 | New York, USA</div>
                 <div class="gpa">GPA: 3.72</div>
             </div>
@@ -1279,10 +1514,50 @@
                     <i class="fas fa-graduation-cap"></i>
                     Bachelor of Technology, Information Technology
                 </div>
-                <div class="university"><a href="http://www.ipu.ac.in/aboutuni.php" target="_blank" style="color: inherit; text-decoration: none;">Guru Gobind Singh Indraprastha University</a></div>
+                <div class="university">Guru Gobind Singh Indraprastha University</div>
                 <div class="duration">September 2011 – May 2015 | Delhi, India</div>
                 <div class="gpa">GPA: 3.9</div>
             </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="glass-container">
+        <h2 class="section-header">Get In Touch</h2>
+        <div class="contact-form-container">
+            <div class="contact-form-intro">
+                <p>Interested in collaborating or have a question? I'd love to hear from you!</p>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="name" name="name" placeholder="" required>
+                        <label for="name">Name</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="" required>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group message-group">
+                        <i class="fas fa-message input-icon"></i>
+                        <textarea id="message" name="message" placeholder="" rows="5" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Send Message</span>
+                    <i class="fas fa-paper-plane btn-icon"></i>
+                    <div class="btn-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </form>
         </div>
     </section>
 
@@ -1328,7 +1603,7 @@
                         isDeleting = false;
                         textIndex = (textIndex + 1) % texts.length;
                         charIndex = 0;
-                        setTimeout(typeText, 500); // Pause before typing next text
+                        setTimeout(typeText, 500);
                         return;
                     }
                 } else {
@@ -1338,13 +1613,13 @@
                     if (charIndex === currentText.length) {
                         setTimeout(() => {
                             isDeleting = true;
-                        }, 3000); // Display complete text for 3 seconds
+                        }, 3000);
                         setTimeout(typeText, 3000);
                         return;
                     }
                 }
 
-                const typeSpeed = isDeleting ? 75 : 120; // Slower and more consistent speeds
+                const typeSpeed = isDeleting ? 75 : 120;
                 setTimeout(typeText, typeSpeed);
             }
 
@@ -1403,7 +1678,6 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Stagger animation for child elements
                         const staggerElements = entry.target.querySelectorAll('[class*="stagger"], .experience-item, .skill-tag');
                         staggerElements.forEach((el, index) => {
                             setTimeout(() => {
@@ -1431,7 +1705,6 @@
                 if (clickCount === 1) {
                     profileImage.style.animation = 'profilePulse 0.8s ease';
                 } else if (clickCount === 3) {
-                    // Easter egg after 3 clicks
                     profileImage.innerHTML = '🚀';
                     profileImage.style.background = 'linear-gradient(135deg, #ff6b6b, #4ecdc4)';
                     setTimeout(() => {
@@ -1452,10 +1725,8 @@
             const skillTags = document.querySelectorAll('.skill-tag');
             
             function highlightRandomSkill() {
-                // Remove previous highlights
                 skillTags.forEach(tag => tag.classList.remove('highlighted'));
                 
-                // Highlight random skill
                 const randomIndex = Math.floor(Math.random() * skillTags.length);
                 skillTags[randomIndex].classList.add('highlighted');
                 
@@ -1464,10 +1735,8 @@
                 }, 2000);
             }
             
-            // Highlight skills every 15 seconds
             setInterval(highlightRandomSkill, 15000);
             
-            // Add click handlers
             skillTags.forEach(tag => {
                 tag.addEventListener('click', () => {
                     tag.classList.toggle('highlighted');
@@ -1519,9 +1788,117 @@
             });
         }
 
+        // PDF Download functionality
+        function downloadPDF() {
+            const link = document.createElement('a');
+    	    link.href = 'output2.pdf'; // path to file
+      	    link.download = 'My_Resume.pdf'; // filename for download
+    	       document.body.appendChild(link);
+    	link.click();
+    document.body.removeChild(link);
+        } 
+
+        // Contact form functionality
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = form.querySelector('.submit-btn');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    form.reset();
+                    
+                    const inputs = form.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        const label = input.nextElementSibling;
+                        if (label && label.tagName === 'LABEL') {
+                            label.style.transform = '';
+                            label.style.color = '';
+                            label.style.background = '';
+                        }
+                    });
+                    
+                } catch (error) {
+                    showNotification('Something went wrong. Please try again or contact me directly.', 'error');
+                } finally {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            const inputs = form.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value) {
+                        e.target.setAttribute('data-filled', 'true');
+                    } else {
+                        e.target.removeAttribute('data-filled');
+                    }
+                });
+            });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--accent-color)' : '#ef4444'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                z-index: 10000;
+                box-shadow: var(--shadow-primary);
+                transform: translateX(400px);
+                transition: var(--transition);
+                max-width: 400px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+
         // Keyboard navigation
         function initKeyboardNavigation() {
-            const sections = ['header', 'certifications', 'skills', 'experience', 'education'];
+            const sections = ['header', 'certifications', 'skills', 'experience', 'education', 'contact'];
             let currentSectionIndex = 0;
             
             document.addEventListener('keydown', (e) => {
@@ -1583,21 +1960,19 @@
             initKeyboardNavigation();
             initScrollIndicator();
             initLoadingAnimation();
+            initContactForm();
             
-            // Add navigation click handlers
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', () => {
                     scrollToSection(item.dataset.target);
                 });
             });
             
-            // Scroll event listeners
             window.addEventListener('scroll', () => {
                 updateProgressBar();
                 updateActiveNavItem();
             });
             
-            // Add hover effects to experience items
             document.querySelectorAll('.experience-item').forEach(item => {
                 item.addEventListener('mouseenter', () => {
                     item.style.transform = 'translateX(15px) translateY(-5px) scale(1.02)';
